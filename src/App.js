@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   const people = ['Tabib Mahmud', 'Tashrif Kahn']
@@ -21,6 +21,7 @@ function App() {
       <header className="App-header">
         <p>I am a React Person</p>
         <Counter></Counter>
+        <Users></Users>
         <ul>
           <li>{people[0]}</li>
           <li>{people[1]}</li>
@@ -136,6 +137,28 @@ function Counter() {
       {/* You can write Increase like this directly by call the handleIncrease  */}
       <button onClick={() => setCount(count + 1)}>Increase</button>
       <button onClick={() => setCount(count - 1)}>Decrease</button>
+    </div>
+  )
+}
+
+
+// ===>>>From API
+function Users() {
+  const [users, setUsers] = useState([])
+  useEffect(() => {
+    // console.log('Calling Effects');
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(res => res.json())
+      .then(data => setUsers(data));
+  })
+  return (
+    <div>
+      <h3>Dynamic Users: {users.length}</h3>
+      <ul>
+          {
+            users.map(users => <li>{users.name}</li>)
+          }
+        </ul>
     </div>
   )
 }
