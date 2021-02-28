@@ -21,6 +21,7 @@ function App() {
       <header className="App-header">
         <p>I am a React Person</p>
         <Counter></Counter>
+        {/* <CounterAgain></CounterAgain> */}
         <Users></Users>
         <ul>
           <li>{people[0]}</li>
@@ -128,7 +129,7 @@ function Product(props) {
 
 // Counter/ State
 function Counter() {
-  const [count, setCount] = useState(10);
+  const [count, setCount] = useState(0);
   const handleIncrease = () => setCount(count + 1);
   return (
     <div>
@@ -137,9 +138,18 @@ function Counter() {
       {/* You can write Increase like this directly by call the handleIncrease  */}
       <button onClick={() => setCount(count + 1)}>Increase</button>
       <button onClick={() => setCount(count - 1)}>Decrease</button>
+      <CounterAgain done= {count}></CounterAgain>
     </div>
   )
 }
+function CounterAgain(props) {
+  return (
+    <div>
+      <h3>Done: {props.done}</h3>
+    </div>
+  )
+}
+
 
 
 // ===>>>From API
